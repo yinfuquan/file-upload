@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用layui</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+
+
+
+
+<body>
+
+<button type="button" class="layui-btn" id="test1">
+  <i class="layui-icon">&#xe67c;</i>上传图片
+</button>
+<button type="button" class="layui-btn" id="test2">
+  <a href="/download">下载</a>
+</button>
+<div><a href="/download"></a></div>
+<!-- 你的HTML代码 -->
+
+<script src="../layui/layui.js"></script>
+<script type="text/javascript" th:inline="none">
+  //一般直接写在一个js文件中
+  layui.use(['layer', 'form','jquery','upload'], function(){
+    var layer = layui.layer
+            ,$=layui.jquery
+            ,upload = layui.upload
+            ,form = layui.form;
+    var uploadInst = upload.render({
+      elem: '#test1' //绑定元素
+      ,url: '/upload/' //上传接口
+      ,accept: 'file' //普通文件
+      ,exts: 'zip|rar|7z' //只允许上传压缩文件
+      ,done: function(res){
+        // $('#download').append("<a href="+res.data+"></a>");
+      }
+      ,error: function(){
+        //请求异常回调
+      }
+    });
+
+  });
+</script>
+</body>
+</html>
